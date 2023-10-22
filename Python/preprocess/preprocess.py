@@ -1,12 +1,12 @@
 """
 --------------------------------------------
-Name: xyz
-SID: xyz
-CCID: xyz
-AnonID: xyz
-CMPUT 274, Fall xyz
+#Name: Abdullah Sherwani
+#SID: 1730471
+#CCID: asherwan
+#AnonID: 1000338172
+#CMPUT 274, Fall 2023
 
-Assessment: xyz
+Assessment: Weekly Exercise 4 Preprocess
 --------------------------------------------
 
 TEMPLATE: ADD YOUR INFORMATION TO ABOVE
@@ -15,6 +15,8 @@ You must determine how to structure your solution.
 Create your functions here and call them from under
 if __name__ == "__main__"!
 """
+import sys
+
 def lowercase(x):
     x = x.lower()
     return x
@@ -24,11 +26,10 @@ def specials(x):
     for index in x:
         for i in range(len(notallowed)):
             if index == notallowed[i]:
-               x = x.replace(index,"")
+                x = x.replace(index,"")
     return x
 
 def removenums(x):
-
     if x.isnumeric():
         return x
     else:
@@ -51,14 +52,35 @@ def proc(x):
 def preproccessing():
     y = input().split()
     for index in y:
-        index = lowercase(index)
-        index = specials(index)
-        index = removenums(index)
-        index = stopwords(index)
+        index = stopwords(removenums(specials(lowercase(index))))
         if not index == "":
             proc(index)
     print(*processed_words)
         
+def keepdigits():
+    y = input().split()
+    for index in y:
+        index = stopwords(specials(lowercase(index)))
+        if not index == "":
+            proc(index)
+    print(*processed_words)
+
+def keepstops():
+    y = input().split()
+    for index in y:
+        index = removenums(specials(lowercase(index)))
+        if not index == "":
+            proc(index)
+    print(*processed_words)
+
+def keepsymbols():
+    y = input().split()
+    for index in y:
+        index = stopwords(removenums(lowercase(index)))
+        if not index == "":
+            proc(index)
+    print(*processed_words)
+
 # Global List
 Stop_Words = [
     "i", "me", "my", "myself", "we", "our",
@@ -94,5 +116,12 @@ if __name__ == "__main__":
     # when the program is called directly from the terminal
     # using "python3 preprocess.py". This is directly relevant
     # to this exercise, so you should call your code from here.
-    preproccessing()
-    
+    if len(sys.argv) == 1:
+        preproccessing()
+    else:
+        if sys.argv[1] == "keep-digits":
+            keepdigits()
+        elif sys.argv[1] == "keep-stops":
+            keepstops()
+        elif sys.argv[1] == "keep-symbols":
+            keepsymbols()
