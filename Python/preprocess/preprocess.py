@@ -15,7 +15,50 @@ You must determine how to structure your solution.
 Create your functions here and call them from under
 if __name__ == "__main__"!
 """
+def lowercase(x):
+    x = x.lower()
+    return x
+def specials(x):
+    x = x.replace("-","")
+    notallowed = list("~`!@#$%^&*()_-+=|}{][':;><,./?")
+    for index in x:
+        for i in range(len(notallowed)):
+            if index == notallowed[i]:
+               x = x.replace(index,"")
+    return x
 
+def removenums(x):
+
+    if x.isnumeric():
+        return x
+    else:
+        out=""
+        for index in x:
+            if index in "1234567890":
+                x = x.replace(index,out)
+    return x
+
+def stopwords(x):
+    if x in Stop_Words:
+        x = ""
+    return x
+
+processed_words = []
+def proc(x):
+    processed_words.append(x)
+    #print(processed_words)
+
+def preproccessing():
+    y = input().split()
+    for index in y:
+        index = lowercase(index)
+        index = specials(index)
+        index = removenums(index)
+        index = stopwords(index)
+        if not index == "":
+            proc(index)
+    print(*processed_words)
+        
 # Global List
 Stop_Words = [
     "i", "me", "my", "myself", "we", "our",
@@ -51,4 +94,5 @@ if __name__ == "__main__":
     # when the program is called directly from the terminal
     # using "python3 preprocess.py". This is directly relevant
     # to this exercise, so you should call your code from here.
-    pass
+    preproccessing()
+    
