@@ -9,7 +9,7 @@ public class SongCollection {
 	private ArrayList<Song> songs;
 
 	public SongCollection() {
-		
+		songs = new ArrayList<Song>();
 	}
 
 	/**
@@ -19,26 +19,32 @@ public class SongCollection {
 	 * @param s
 	 */
 	public void add(Song s) {
-		
+		//if (songs.contains(s)) {
+			//change average
+		songs.add(s);
 	}
 
 	public void remove(Song s) {
-		
+		songs.remove(s);
 	}
 
 	public boolean contains(Song s) {
-		
+		if (songs.contains(s));
+		return true;
 	}
 
 	public Song getSong(int index) {
-		
+		if (0 <= index && index < songs.size())
+			return songs.get(index);
+		return null;
 	}
 
 	public int getNumberOfSongs() {
-		
+		return songs.size();
 	}
 
 	public ArrayList<Song> getSongs() {
+		return songs;
 		
 	}
 
@@ -48,4 +54,5 @@ public class SongCollection {
 			toRet += "\n\t" + s + "; ";
 		return toRet + "\n]";
 	}
+
 }
