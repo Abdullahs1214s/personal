@@ -24,9 +24,17 @@ public class SongLoader {
 	 * @param file
 	 * @return the loaded SongCollection
 	 */
-	public static SongCollection loadSongs(String file) {
+	//public static SongCollection loadSongs(String file) {
+		//Scanner myobj = new Scanner(file);
+		//int count = 0;
+		//while(myobj.hasNextLine()) {
+		//	count += 1;
+		//}
+		//while(myobj.hasNextLine()) {
+			//Song song = new Song(myobj.nextLine());
+			
 		
-	}
+	//}
 
 	/**
 	 * Parse a Song object from the String and return it. If the String cannot be
@@ -36,9 +44,9 @@ public class SongLoader {
 	 * @return
 	 * @throws InvalidSongFormatException
 	 */
-	public static Song parseSong(String songString) throws InvalidSongFormatException {
+	//public static Song parseSong(String songString) throws InvalidSongFormatException {
 		
-	}
+	//}
 
 	/**
 	 * Uses a scanner to parse the instruments string into an ArrayList of String
@@ -49,12 +57,31 @@ public class SongLoader {
 	 * @param instruments
 	 * @return an ArrayList with one String per parsed instrument
 	 */
-	public static ArrayList<String> parseInstrumentsList(String instruments) {
+	//public static ArrayList<String> parseInstrumentsList(String instruments) {
 		
-	}
+	//}
 
 	public static void main(String[] args) {
-		String file = "songratings.txt";
-		System.out.println(SongLoader.loadSongs(file));
+		//String file = "songratings.txt";
+		//System.out.println(SongLoader.loadSongs(file));
+		try {
+		File myobj = new File("C:\\Users\\srskh\\Downloads\\ece325_lab_assignment4\\lab_assignment4\\src\\ece325\\labs\\lab4\\songratings.txt");
+		Scanner sc = new Scanner(myobj);
+		String line = sc.nextLine();
+		String line1 = sc.nextLine();
+		int len = (line.length());
+		System.out.println(len);
+		int index = line.indexOf(";",25);
+		float rating = Float.parseFloat(line.substring(index+1));
+		System.out.println(rating);
+		
+		sc.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		}
+
+		
 	}
-}
