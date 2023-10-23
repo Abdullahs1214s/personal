@@ -29,8 +29,14 @@ public class SongCollection {
 	}
 
 	public boolean contains(Song s) {
-		if (songs.contains(s));
-		return true;
+		for(Song i : songs){
+			if (i.equals(s)){
+				i.addRating(s.getRating().getAvgRating());
+				return true;
+			}}
+			songs.add(s);
+			return false;
+		
 	}
 
 	public Song getSong(int index) {

@@ -8,7 +8,8 @@ public class AverageRating {
 	private float count;
 	
 	public AverageRating(float rating) {
-		 this.avgRating = rating;
+		this.avgRating = rating;
+		count = 0;
 	}
 	
 	/**
@@ -17,6 +18,7 @@ public class AverageRating {
 	 */
 	public void addRating(float r) {
 		avgRating = (avgRating + r)/2;
+		count += 1;
 	}
 	
 	public float getAvgRating() {
