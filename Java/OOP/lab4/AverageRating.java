@@ -1,6 +1,5 @@
 package OOP.lab4;
 
-
 /** 
  * Finish this class.
  */
@@ -9,7 +8,7 @@ public class AverageRating {
 	private float count;
 	
 	public AverageRating(float rating) {
-		
+		 this.avgRating = rating;
 	}
 	
 	/**
@@ -17,7 +16,7 @@ public class AverageRating {
 	 * @param rating 
 	 */
 	public void addRating(float r) {
-		
+		avgRating = (avgRating + r)/2;
 	}
 	
 	public float getAvgRating() {
