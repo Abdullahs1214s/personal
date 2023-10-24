@@ -1,10 +1,13 @@
 package OOP.lab4;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /** 
@@ -24,17 +27,24 @@ public class SongLoader {
 	 * @param file
 	 * @return the loaded SongCollection
 	 */
-	//public static SongCollection loadSongs(String file) {
-		//Scanner myobj = new Scanner(file);
-		//int count = 0;
-		//while(myobj.hasNextLine()) {
-		//	count += 1;
-		//}
-		//while(myobj.hasNextLine()) {
-			//Song song = new Song(myobj.nextLine());
-			
-		
-	//}
+	public static SongCollection loadSongs(String file) {
+		try {
+			File myobj = new File("/workspaces/personal/Java/OOP/lab4/songratings.txt");
+			Scanner sc = new Scanner(myobj);
+			SongCollection s = new SongCollection();
+			while (sc.hasNextLine()){
+				String line = sc.nextLine();
+				s.add(parseSong(line));
+			}sc.close();
+			return s;
+		}
+			catch (FileNotFoundException e){
+			System.err.println(e.getMessage());
+		} catch (InvalidSongFormatException e){
+			System.out.println(e.getMessage());
+		}return null;
+	}
+
 
 	/**
 	 * Parse a Song object from the String and return it. If the String cannot be
@@ -44,9 +54,28 @@ public class SongLoader {
 	 * @return
 	 * @throws InvalidSongFormatException
 	 */
-	//public static Song parseSong(String songString) throws InvalidSongFormatException {
+	
+	 public static Song parseSong(String songString) throws InvalidSongFormatException {
+		try {
+		String[] splittedstr = songString.trim().split("\\s*;\\s*");
+		String title = splittedstr[0];
+		String instruments = splittedstr[1];
+		String rat = splittedstr[2];
+		float rating = Float.parseFloat(rat);
+		AverageRating rate = new AverageRating(rating);
 		
-	//}
+		if (instruments == "" || title == "" || rat == ""){
+			throw new InvalidSongFormatException("Invalid Song Format");
+		}
+		Song song = new Song (title,parseInstrumentsList(instruments),rate);
+		return song;
+	}
+		catch (InvalidSongFormatException e){
+			System.err.println(e.getMessage());
+		}
+		
+		return null;
+	}
 
 	/**
 	 * Uses a scanner to parse the instruments string into an ArrayList of String
@@ -57,31 +86,23 @@ public class SongLoader {
 	 * @param instruments
 	 * @return an ArrayList with one String per parsed instrument
 	 */
-	//public static ArrayList<String> parseInstrumentsList(String instruments) {
-		
-	//}
+	
+ 	public static ArrayList<String> parseInstrumentsList(String instruments) {
+		ArrayList<String> inst = new ArrayList<String>();
+		String[] splitted = instruments.trim().split("\\s*,\\s*");
+		int len = Arrays.asList(splitted).size();
+		for (int i = 0; i < len; i++){
+			inst.add(splitted[i]);
+		}
+		return inst;
+	}
+	
 
 	public static void main(String[] args) {
-		//String file = "songratings.txt";
-		//System.out.println(SongLoader.loadSongs(file));
-		try {
-		File myobj = new File("C:\\Users\\srskh\\Downloads\\ece325_lab_assignment4\\lab_assignment4\\src\\ece325\\labs\\lab4\\songratings.txt");
-		Scanner sc = new Scanner(myobj);
-		String line = sc.nextLine();
-		String line1 = sc.nextLine();
-		int len = (line.length());
-		System.out.println(len);
-		int index = line.indexOf(";",25);
-		float rating = Float.parseFloat(line.substring(index+1));
-		System.out.println(rating);
+		String file = "songratings.txt";
+		System.out.println(SongLoader.loadSongs(file));
 		
-		sc.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		}
 
-		
+		//("C:\\Users\\srskh\\Downloads\\ece325_lab_assignment4\\lab_assignment4\\src\\ece325\\labs\\lab4\\songratings.txt")
 	}
+}

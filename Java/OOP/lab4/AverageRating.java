@@ -9,6 +9,7 @@ public class AverageRating {
 	
 	public AverageRating(float rating) {
 		this.avgRating = rating;
+		this.count = count;
 		count = 0;
 	}
 	
