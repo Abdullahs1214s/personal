@@ -1,5 +1,4 @@
 Contribution;Guitar,Guitar,Drums;4.5
-Loser codes; Guitar; 1.0
 Nobody's Coder;Mic,Drums,Mic;10
 Nobody's Coder;Guitar,Drums,Mic;1
 Contribution;Guitar,Guitar,Drums;8.5

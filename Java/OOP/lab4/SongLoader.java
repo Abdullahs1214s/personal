@@ -31,15 +31,14 @@ public class SongLoader {
 		try {
 			File myobj = new File("/workspaces/personal/Java/OOP/lab4/songratings.txt");
 			Scanner sc = new Scanner(myobj);
-			SongCollection s = new SongCollection();
+			SongCollection songs = new SongCollection();
+			
 			while (sc.hasNextLine()){
 				String line = sc.nextLine();
-				s.add(parseSong(line));
-				for (Song so : songs){
-
-				}
+				Song song = parseSong(line);
+				songs.contains(song);
 			}sc.close();
-			return s;
+			return songs;
 		}
 			catch (FileNotFoundException e){
 			System.err.println(e.getMessage());

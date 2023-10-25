@@ -62,30 +62,4 @@ public class Song {
 	public String toString() {
 		return "[Song: " + title + ", instruments: " + instruments + ", avg. rating: " + averageRating + "]"; 
 	}
-	
-		/*ArrayList<String> inst = new ArrayList();
-		inst.add("Guitar");
-		inst.add("Drum");
-		inst.add("Guitar");
-		ArrayList<String> ins = new ArrayList();
-		ins.add("Guitar");
-		ins.add("Guitar");
-		ins.add("Drum");
-		AverageRating rating = new AverageRating(4);
-		Song song = new Song("test", inst, rating);
-		Song song1 = new Song("test", ins, rating);
-		Song song2 = new Song("name", inst, rating);
-		*/
-		//System.out.println(song.equals(song1));
-
-		//System.out.println(song.equals(song1));
-		//System.out.println(inst);
-		//Collections.sort(inst);
-	//	System.out.println(inst);
-		//AverageRating rating = new AverageRating(4);
-		//System.out.println(rating.getAvgRating());
-		
-		//rating.addRating(9);
-		//System.out.println(rating.getAvgRating());
-	
 }

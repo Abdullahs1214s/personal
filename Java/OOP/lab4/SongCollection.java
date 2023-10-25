@@ -60,5 +60,4 @@ public class SongCollection {
 			toRet += "\n\t" + s + "; ";
 		return toRet + "\n]";
 	}
-
 }
