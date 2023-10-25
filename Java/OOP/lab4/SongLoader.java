@@ -35,6 +35,9 @@ public class SongLoader {
 			while (sc.hasNextLine()){
 				String line = sc.nextLine();
 				s.add(parseSong(line));
+				for (Song so : songs){
+
+				}
 			}sc.close();
 			return s;
 		}
@@ -56,11 +59,14 @@ public class SongLoader {
 	 */
 	
 	 public static Song parseSong(String songString) throws InvalidSongFormatException {
+		String title = "";
+		String instruments = "";
+		String rat = "";
 		try {
 		String[] splittedstr = songString.trim().split("\\s*;\\s*");
-		String title = splittedstr[0];
-		String instruments = splittedstr[1];
-		String rat = splittedstr[2];
+		title = splittedstr[0];
+		instruments = splittedstr[1];
+		rat = splittedstr[2];
 		float rating = Float.parseFloat(rat);
 		AverageRating rate = new AverageRating(rating);
 		
@@ -72,6 +78,8 @@ public class SongLoader {
 	}
 		catch (InvalidSongFormatException e){
 			System.err.println(e.getMessage());
+		}catch (ArrayIndexOutOfBoundsException e){
+			throw new InvalidSongFormatException("Invalid Song Format");
 		}
 		
 		return null;
