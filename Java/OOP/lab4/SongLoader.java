@@ -60,14 +60,17 @@ public class SongLoader {
 	 public static Song parseSong(String songString) throws InvalidSongFormatException {
 		String title = "";
 		String instruments = "";
+		ArrayList<String> empty = new ArrayList<String>();
 		String rat = "";
+		float r = 0;
+		AverageRating rate = new AverageRating(r);
 		try {
 		String[] splittedstr = songString.trim().split("\\s*;\\s*");
 		title = splittedstr[0];
 		instruments = splittedstr[1];
 		rat = splittedstr[2];
 		float rating = Float.parseFloat(rat);
-		AverageRating rate = new AverageRating(rating);
+		rate = new AverageRating(rating);
 		
 		if (instruments == "" || title == "" || rat == ""){
 			throw new InvalidSongFormatException("Invalid Song Format");
@@ -81,7 +84,7 @@ public class SongLoader {
 			throw new InvalidSongFormatException("Invalid Song Format");
 		}
 		
-		return null;
+		return new Song(title, empty, rate);
 	}
 
 	/**

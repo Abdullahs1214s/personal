@@ -10,7 +10,7 @@ public class AverageRating {
 	public AverageRating(float rating) {
 		this.avgRating = rating;
 		this.count = count;
-		count = 0;
+		count = 1;
 	}
 	
 	/**
@@ -18,8 +18,15 @@ public class AverageRating {
 	 * @param rating 
 	 */
 	public void addRating(float r) {
-		avgRating = (avgRating + r)/2;
-		count += 1;
+		if (count > 0){
+		
+		avgRating = (avgRating * count + r)/(count+1);
+		count +=1;
+		}
+		else {
+		count = 1;
+		avgRating = avgRating+r;
+		}
 	}
 	
 	public float getAvgRating() {
