@@ -36,7 +36,7 @@ public class SongLoader {
 			while (sc.hasNextLine()){
 				String line = sc.nextLine();
 				Song song = parseSong(line);
-				songs.contains(song);
+				songs.add(song);
 			}sc.close();
 			return songs;
 		}

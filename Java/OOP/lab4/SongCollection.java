@@ -19,10 +19,16 @@ public class SongCollection {
 	 * @param s
 	 */
 	public void add(Song s) {
-		//if (songs.contains(s)) {
-			//change average
-		songs.add(s);
+		if (songs.contains(s)) {
+			for (Song i: songs){
+				if (i.equals(s)){
+					i.addRating(s.getRating().getAvgRating());
+				}
+			}
 	}
+	else{
+		songs.add(s);
+	}}
 
 	public void remove(Song s) {
 		songs.remove(s);
@@ -31,10 +37,10 @@ public class SongCollection {
 	public boolean contains(Song s) {
 		for(Song i : songs){
 			if (i.equals(s)){
-				i.addRating(s.getRating().getAvgRating());
+				//i.addRating(s.getRating().getAvgRating());
 				return true;
 			}}
-			songs.add(s);
+			//songs.add(s);
 			return false;
 		
 	}
